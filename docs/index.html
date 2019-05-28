@@ -45,6 +45,21 @@
   border-color: transparent #fff transparent transparent;
   border-style: solid;
 }
+button{
+  font-size: 40px;
+}
+
+.reset_button{
+  background: #ff9a9a;
+  margin-left: 30px;
+}
+.reset_button:hover {
+  background: #fb7474;
+}
+.counter{
+	margin-left: 30px;
+	font-size: 70px;
+}
 </style>
 
 </head>
@@ -52,7 +67,6 @@
 <body>
  <!-- main is the container -->
   <main>
-    <h1>丸の内ゲーム</h1>
     <article>
       <h2><span class="now">NOW ▶ </span><span id='now_song'>丸の内サディスティック [難易度:★★]</span></h2>
       <p id='now_kashi' class='kashi'>報酬は入社後平行線で</p>
@@ -62,7 +76,11 @@
       <h2><span class="now">NEXT ▶ </span><span id='next_song'>丸の内サディスティック [難易度:★★]</span></h2>
       <p id='next_kashi' class='kashi'>東京は愛せどなにもない</p>
     </article>
-    <button id="next">NEXT</button>
+    <p>
+      <button id="next">NEXT</button>
+      <span class="counter">連続<span id="count">0</span>回</span>
+      <button id="reset" class="reset_button">RESET</button>
+    </p>
     <!-- footer -->
     <footer>
       <p>&copy; nakagawa_sanchi 2019</p>
@@ -102,6 +120,12 @@
       }
       $('#next_song').html(songData[nextId].song_name +"<span> [難易度：" + star +"]</span>");
       $('#next_kashi').html(songData[nextId].kashi);
+
+      //カウンター更新
+      $('#count').html(Number($('#count').html())+1);
+    });
+    $('#reset').on('click',function(){
+    	$('#count').html(0);
     });
   });
 
